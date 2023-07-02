@@ -21,27 +21,40 @@
     </div>
     <section class="py-4">
         <div class="container">
-            <h2 class="text-center mb-4">Mapa do Jardim</h2>
-            <div id="map"></div>
-            <div id="categorias" class="mt-4">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="edificacoes" name="categoria" value="Edificações" checked>
-                    <label class="form-check-label" for="edificacoes">Edificações</label>
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Mapa do Jardim</title>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+            </head>
+            <body>
+                <h2 class="text-center mb-4">Mapa do Jardim</h2>
+                <div id="map" style="height: 400px;"></div>
+                <div id="categorias" class="mt-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="edificacoes" name="categoria" value="Edificações" checked>
+                        <label class="form-check-label" for="edificacoes">Edificações</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="colecoes" name="categoria" value="Coleções" checked>
+                        <label class="form-check-label" for="colecoes">Coleções</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="lazer" name="categoria" value="Lazer" checked>
+                        <label class="form-check-label" for="lazer">Lazer</label>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colecoes" name="categoria" value="Coleções" checked>
-                    <label class="form-check-label" for="colecoes">Coleções</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="lazer" name="categoria" value="Lazer" checked>
-                    <label class="form-check-label" for="lazer">Lazer</label>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+            
+                <button id="startBtn" onclick="startRecording()">Start Recording</button>
+                <button id="stopBtn" onclick="stopRecording()" disabled>Stop Recording</button>
+                <button id="downloadBtn" onclick="downloadTrack()" disabled>Download Track</button>
+                <button id="resetBtn" onclick="resetTrack()" disabled>Reset Track</button>
+            
+                <div id="loc"></div>
+            
+                <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+                <script src="script.js"></script>
+            </body>
+            </html>
+            
