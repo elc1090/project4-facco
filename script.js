@@ -21,6 +21,7 @@ var url = 'https://script.google.com/macros/s/AKfycbzwVOtrIg-xJMk9eya2yVULSTdryq
 
 var markersLayer = L.layerGroup().addTo(map); // Layer para os marcadores
 var trackLayer = L.layerGroup().addTo(map); // Layer para o caminho percorrido
+var currentPolyline = null; // Referência à linha azul atual
 
 fetch(url)
     .then(function(response) {
@@ -105,7 +106,14 @@ function resetTrack() {
     track = [];
     document.getElementById("downloadBtn").disabled = true;
     document.getElementById("resetBtn").disabled = true;
-    document.getElementById("loc").innerHTML = "";
+
+    // Remove a linha azul atual, se existir
+    if (currentPolyline !== null) {
+        trackLayer.removeLayer(currentPolyline);
+        currentPolyline = null;
+    }
+
+    startRecording(); // Inicia a gravação novamente com um novo ponto
 }
 
 function recordPosition(position) {
@@ -115,15 +123,18 @@ function recordPosition(position) {
             longitude: position.coords.longitude
         });
 
-        var mapDiv = document.getElementById("loc");
-        mapDiv.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-
         var latLngs = track.map(function(point) {
             return L.latLng(point.latitude, point.longitude);
         });
 
-        var polyline = L.polyline(latLngs, { color: 'blue' }).addTo(trackLayer);
-        map.fitBounds(polyline.getBounds());
+        // Remove a linha azul atual, se existir
+        if (currentPolyline !== null) {
+            trackLayer.removeLayer(currentPolyline);
+        }
+
+        // Adiciona a nova linha azul
+        currentPolyline = L.polyline(latLngs, { color: 'blue' }).addTo(trackLayer);
+        map.fitBounds(currentPolyline.getBounds());
     }
 }
 
