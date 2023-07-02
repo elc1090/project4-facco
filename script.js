@@ -24,6 +24,29 @@ var trackLayer = L.layerGroup().addTo(map); // Layer para o caminho percorrido
 var currentPolyline = null; // Referência à linha azul atual
 var currentLocationMarker = null; // Referência ao marcador vermelho da posição atual
 
+function addCurrentLocationMarker() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            var redIcon = L.icon({
+                iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            currentLocationMarker = L.marker([latitude, longitude], { icon: redIcon })
+                .bindPopup("Você está aqui")
+                .addTo(markersLayer);
+
+            map.setView([latitude, longitude], 16);
+        });
+    }
+}
+
 fetch(url)
     .then(function(response) {
         return response.json();
@@ -46,35 +69,6 @@ fetch(url)
 
         // Exibir os marcadores fixos da API
         showMarkers();
-
-        // Função para adicionar o marcador da localização atual
-        function addCurrentLocationMarker() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-
-                    var redIcon = L.icon({
-                        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    });
-
-                    // Remove o marcador vermelho atual, se existir
-                    if (currentLocationMarker !== null) {
-                        markersLayer.removeLayer(currentLocationMarker);
-                    }
-
-                    currentLocationMarker = L.marker([latitude, longitude], { icon: redIcon })
-                        .bindPopup("Você está aqui")
-                        .addTo(markersLayer);
-
-                    map.setView([latitude, longitude], 16);
-                });
-            }
-        }
 
         // Adicionar o marcador da localização atual
         addCurrentLocationMarker();
@@ -126,17 +120,16 @@ function resetTrack() {
         currentLocationMarker = null;
     }
 
-    // Adiciona novamente o marcador vermelho na nova posição do usuário
-    addCurrentLocationMarker();
+    // Adiciona novamente o marcador vermelho na nova posição do usuário com um pequeno atraso
+    setTimeout(function() {
+        addCurrentLocationMarker();
+    }, 500);
 
     // Reinicia a gravação a partir do novo ponto
     isRecording = true;
     navigator.geolocation.getCurrentPosition(recordPosition, watcherror, { enableHighAccuracy: true, maximumAge: 0, timeout: Infinity });
     navigator.geolocation.watchPosition(recordPosition, watcherror, { enableHighAccuracy: true, maximumAge: 0, timeout: Infinity });
 }
-
-
-
 
 function recordPosition(position) {
     if (isRecording) {
