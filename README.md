@@ -44,7 +44,6 @@ Diovani Facco
 
 - https://ganlanyuan.github.io/tiny-slider/demo/
 - https://leafletjs.com/
-- Créditos para colegas que colaboraram
 
 #### Bastidores
 
