@@ -1,89 +1,113 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contact-info {
+  text-align: center;
+  margin-top: 50px;
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+
+.contact-info h1,
+.contact-info h2 {
+  margin-top: 0;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info p i {
+  margin-right: 10px;
+}
+
+.social-media-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.social-media-icons a {
+  color: #333;
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.opening-hours {
+  text-align: center;
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+
+.opening-hours-info {
+  margin-top: 0;
+}
+
+.opening-hours-info h2 {
+  margin-top: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
   .header {
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
   }
-  
-  h1 {
-    margin-top: 0;
+
+  .content {
+    padding: 10px;
   }
-  
-  .navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .navbar li {
-    margin: 0 10px;
-  }
-  
-  .navbar a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-  }
-  
+
   .contact-info {
-    text-align: center;
-    margin-top: 50px;
-    border: 2px solid #ccc;
-    padding: 20px;
-  }
-  
-  .contact-info h1,
-  .contact-info h2 {
-    margin-top: 0;
-  }
-  
-  .contact-info p {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .contact-info p i {
-    margin-right: 10px;
-  }
-  
-  .social-media-icons {
-    display: flex;
-    justify-content: center;
     margin-top: 20px;
+    padding: 10px;
   }
-  
-  .social-media-icons a {
-    color: #333;
-    font-size: 20px;
-    margin: 0 10px;
-  }
-  
+
   .opening-hours {
-    text-align: center;
     margin-top: 20px;
+    padding: 10px;
   }
-  
-  .opening-hours h2 {
-    margin-top: 0;
+
+  .social-media-icons {
+    margin-top: 10px;
   }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 600px) {
-    .contact-info {
-      margin: 20px;
-      padding: 10px;
-    }
-    
-    .social-media-icons {
-      margin-top: 10px;
-    }
-  }
-  
+}

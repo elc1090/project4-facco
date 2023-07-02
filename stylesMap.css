@@ -60,3 +60,52 @@ body {
 .form-check-inline {
     margin-right: 10px;
 }
+
+/* Estilo dos botões */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilo do botão Start Recording */
+#startBtn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Estilo do botão Stop Recording */
+#stopBtn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Estilo do botão Download Track */
+#downloadBtn {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Estilo do botão Reset Track */
+#resetBtn {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Efeito de transição nos botões */
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Estilo do botão quando desabilitado */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #333;
+}
