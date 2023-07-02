@@ -6,7 +6,10 @@
 
 #### Descrição
 
-Preencha aqui uma descrição sucinta do projeto (tema e funcionalidades)
+O tema escolhido foi o Jardim Botânico, a ideia principal era focar no mapa, algumas coisas estão funcionando, como
+pontos interessantes, gravar rota, baixar rota feita. Outras funcionalidades serão implementadas nas próximas atualizações.
+O restante é bem simples, como página de agenda,mento e contato...
+
 
 #### Deploy
   https://elc1090.github.io/project4-facco/home.html
