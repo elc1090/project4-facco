@@ -16,8 +16,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
 }).addTo(map);
 
+// URL da API
+var url = 'https://script.google.com/macros/s/AKfycbzwVOtrIg-xJMk9eya2yVULSTdryq0f-6vGLN6XNstIomErMlB0yofoCBQvbNkrC7iMnw/exec';
+
 var markersLayer = L.layerGroup().addTo(map); // Layer para os marcadores
-var trackLayer = L.layerGroup().addTo(map); // Layer para o caminho do usuário
+var trackLayer = L.layerGroup().addTo(map); // Layer para o caminho percorrido
 
 fetch(url)
     .then(function(response) {
@@ -28,17 +31,10 @@ fetch(url)
 
         var markers = data.saida; // Supondo que a resposta JSON tenha a estrutura { "saida": [...] }
 
-        // Função para exibir ou ocultar os marcadores de acordo com a categoria selecionada
-        function updateMarkers() {
-            markersLayer.clearLayers(); // Limpa os marcadores no mapa
-
-            var selectedCategories = Array.from(document.querySelectorAll('#categorias input[name="categoria"]:checked'))
-                .map(function(checkbox) {
-                    return checkbox.value;
-                });
-
+        // Função para exibir os marcadores fixos da API
+        function showMarkers() {
             markers.forEach(function(marker) {
-                if (selectedCategories.includes(marker.Categoria) && marker.Latitude !== '' && marker.Longitude !== '') {
+                if (marker.Latitude !== '' && marker.Longitude !== '') {
                     L.marker([marker.Latitude, marker.Longitude])
                         .bindPopup("<strong>" + marker.Nome + "</strong><br>" + marker.Descricao)
                         .addTo(markersLayer);
@@ -46,14 +42,8 @@ fetch(url)
             });
         }
 
-        // Adicionar event listeners para os checkboxes de categoria
-        var categoriaCheckboxes = document.querySelectorAll('#categorias input[name="categoria"]');
-        categoriaCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', updateMarkers);
-        });
-
-        // Exibir marcadores iniciais
-        updateMarkers();
+        // Exibir os marcadores fixos da API
+        showMarkers();
 
         // Função para adicionar o marcador da localização atual
         function addCurrentLocationMarker() {
@@ -116,7 +106,6 @@ function resetTrack() {
     document.getElementById("downloadBtn").disabled = true;
     document.getElementById("resetBtn").disabled = true;
     document.getElementById("loc").innerHTML = "";
-    trackLayer.clearLayers();
 }
 
 function recordPosition(position) {
@@ -129,20 +118,12 @@ function recordPosition(position) {
         var mapDiv = document.getElementById("loc");
         mapDiv.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
 
-        updateTrackPath();
-    }
-}
+        var latLngs = track.map(function(point) {
+            return L.latLng(point.latitude, point.longitude);
+        });
 
-function updateTrackPath() {
-    trackLayer.clearLayers();
-
-    var latLngs = track.map(function(position) {
-        return L.latLng(position.latitude, position.longitude);
-    });
-
-    if (latLngs.length > 0) {
-        var trackPath = L.polyline(latLngs, { color: 'red' }).addTo(trackLayer);
-        map.fitBounds(trackPath.getBounds());
+        var polyline = L.polyline(latLngs, { color: 'blue' }).addTo(trackLayer);
+        map.fitBounds(polyline.getBounds());
     }
 }
 
