@@ -7,6 +7,7 @@ var filesToCache = [
   'Mapa.html',
   'agendamento.html',
   'contato.html',
+  'stylesCont.css',
   'stylesHome.css',
   'stylesNav.css',
   'stylesMap.css',
