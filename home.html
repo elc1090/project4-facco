@@ -9,17 +9,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(function(registration) {
-        console.log('Service Worker registrado com sucesso:', registration);
-      })
-      .catch(function(error) {
-        console.log('Falha ao registrar o Service Worker:', error);
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration);
+          })
+          .catch(function(error) {
+            console.log('Falha ao registrar o Service Worker:', error);
+          });
       });
-  }
-</script>
+    }
+  </script>
 
 
 
