@@ -5,6 +5,25 @@
   <link rel="stylesheet" type="text/css" href="stylesAgend.css">
   <link rel="stylesheet" href="stylesNav.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function(registration) {
+          console.log('Service Worker registrado com sucesso:', registration);
+        })
+        .catch(function(error) {
+          console.log('Falha ao registrar o Service Worker:', error);
+        });
+    }
+  </script>
+
+
+
+
+
+
+
 </head>
 <body>
 
