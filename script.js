@@ -126,10 +126,15 @@ function resetTrack() {
         currentLocationMarker = null;
     }
 
-    addCurrentLocationMarker(); // Adiciona novamente o marcador vermelho na nova posição do usuário
+    // Adiciona novamente o marcador vermelho na nova posição do usuário
+    addCurrentLocationMarker();
 
-    startRecording(); // Inicia a gravação novamente com um novo ponto
+    // Reinicia a gravação a partir do novo ponto
+    isRecording = true;
+    navigator.geolocation.getCurrentPosition(recordPosition, watcherror, { enableHighAccuracy: true, maximumAge: 0, timeout: Infinity });
+    navigator.geolocation.watchPosition(recordPosition, watcherror, { enableHighAccuracy: true, maximumAge: 0, timeout: Infinity });
 }
+
 
 
 
