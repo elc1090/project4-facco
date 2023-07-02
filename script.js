@@ -22,6 +22,7 @@ var url = 'https://script.google.com/macros/s/AKfycbzwVOtrIg-xJMk9eya2yVULSTdryq
 var markersLayer = L.layerGroup().addTo(map); // Layer para os marcadores
 var trackLayer = L.layerGroup().addTo(map); // Layer para o caminho percorrido
 var currentPolyline = null; // Referência à linha azul atual
+var currentLocationMarker = null; // Referência ao marcador vermelho da posição atual
 
 fetch(url)
     .then(function(response) {
@@ -61,7 +62,12 @@ fetch(url)
                         shadowSize: [41, 41]
                     });
 
-                    L.marker([latitude, longitude], { icon: redIcon })
+                    // Remove o marcador vermelho atual, se existir
+                    if (currentLocationMarker !== null) {
+                        markersLayer.removeLayer(currentLocationMarker);
+                    }
+
+                    currentLocationMarker = L.marker([latitude, longitude], { icon: redIcon })
                         .bindPopup("Você está aqui")
                         .addTo(markersLayer);
 
@@ -72,6 +78,7 @@ fetch(url)
 
         // Adicionar o marcador da localização atual
         addCurrentLocationMarker();
+
     })
     .catch(function(error) {
         console.log('Erro:', error);
