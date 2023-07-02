@@ -120,8 +120,18 @@ function resetTrack() {
         currentPolyline = null;
     }
 
+    // Remove o marcador vermelho atual, se existir
+    if (currentLocationMarker !== null) {
+        markersLayer.removeLayer(currentLocationMarker);
+        currentLocationMarker = null;
+    }
+
+    addCurrentLocationMarker(); // Adiciona novamente o marcador vermelho na nova posição do usuário
+
     startRecording(); // Inicia a gravação novamente com um novo ponto
 }
+
+
 
 function recordPosition(position) {
     if (isRecording) {
