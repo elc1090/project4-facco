@@ -1,7 +1,7 @@
 # Jardim Botânico - UFSM
 
 
-![Screenshot do projeto](https://mdswanson.com/static/chops-ux-step-4.png "Screenshot do projeto").
+![Screenshot do projeto](/print.png).
 
 
 #### Descrição
