@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,14 +21,6 @@
     </div>
     <section class="py-4">
         <div class="container">
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="UTF-8">
-                <title>Mapa do Jardim</title>
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
-            </head>
-            <body>
                 <h2 class="text-center mb-4">Mapa do Jardim</h2>
                 <div id="map" style="height: 400px;"></div>
                 <div id="categorias" class="mt-4">
@@ -46,15 +38,15 @@
                     </div>
                 </div>
             
-                <button id="startBtn" onclick="startRecording()">Gravar Roteiro</button>
-                <button id="stopBtn" onclick="stopRecording()" disabled>Parar Gravação</button>
-                <button id="downloadBtn" onclick="downloadTrack()" disabled>Baixar Gravação</button>
-                <button id="resetBtn" onclick="resetTrack()" disabled>Resetar Caminho</button>
+                <button id="startBtn" onclick="startRecording()">Start Recording</button>
+                <button id="stopBtn" onclick="stopRecording()" disabled>Stop Recording</button>
+                <button id="downloadBtn" onclick="downloadTrack()" disabled>Download Track</button>
+                <button id="resetBtn" onclick="resetTrack()" disabled>Reset Track</button>
             
                 <div id="loc"></div>
             
                 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
                 <script src="script.js"></script>
-            </body>
-            </html>
+    </body>
+</html>
             
